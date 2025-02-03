@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1094457100361",
+    "project_id": "bloggingproject-37126",
+    "storage_bucket": "bloggingproject-37126.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1094457100361:android:ae53a13b13b40f0565d798",
+        "android_client_info": {
+          "package_name": "com.techslave.techslave"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgPpgmp1dSiRyQS6B9EEolQkt-MHtpM6Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
