@@ -5,10 +5,8 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  
   Future<User?> signUp(String email, String password) async {
     try {
-      
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
         email: email,
@@ -17,7 +15,6 @@ class AuthService {
 
       User? user = userCredential.user;
 
-      
       if (user != null) {
         await _firestore.collection('users').doc(user.uid).set({
           'email': user.email,
@@ -41,7 +38,6 @@ class AuthService {
     }
   }
 
- 
   Future<User?> signIn(String email, String password) async {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
@@ -61,9 +57,24 @@ class AuthService {
     }
   }
 
-  
   Future<void> signOut() async {
     await _auth.signOut();
   }
-}
 
+  Future<void> reset(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(
+        email: email,
+      );
+      print("sent");
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      } else {
+        print('Error during login: $e');
+      }
+    }
+  }
+}

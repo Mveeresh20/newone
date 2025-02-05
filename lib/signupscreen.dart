@@ -135,13 +135,7 @@ class _SignupscreenState extends State<Signupscreen> {
                     },
                   ),
                   const SizedBox(height: 30),
-                  // ElevatedButton(
-                  //   onPressed: () {
-                  //     Navigator.push(context,
-                  //         MaterialPageRoute(builder: (context) {
-                  //       return Homescreen();
-                  //     }));
-                  //   },
+                 
                   ElevatedButton(
                     onPressed: () async {
         

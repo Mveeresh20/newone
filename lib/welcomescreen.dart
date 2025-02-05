@@ -49,15 +49,7 @@ class Welcomescreen extends StatelessWidget {
       ),
     ),
   ),
-                // style: 
-                // ElevatedButton.styleFrom(
-                //   padding:
-                //       const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                //   backgroundColor: Colors.blue,
-                //   shape: RoundedRectangleBorder(
-                //     borderRadius: BorderRadius.circular(20),
-                //   ),
-                // ),
+                
                 
                 
                 child: const Text(

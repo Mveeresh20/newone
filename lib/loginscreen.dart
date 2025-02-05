@@ -18,7 +18,7 @@ class _LoginscreenState extends State<Loginscreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Login',),
         backgroundColor: Colors.transparent,
         elevation: 0, //for the removing shadow
       ),
@@ -69,8 +69,39 @@ class _LoginscreenState extends State<Loginscreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 0,),
+               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                 children: [
+                   TextButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return PasswordReset();
+                      }));
+                    },
+                    child: Text('Forgotten your Password?'),
+                                 ),
+                 ],
+               ),
+
+              SizedBox(height: 10),
               OutlinedButton(
+                style:  ButtonStyle(
+    backgroundColor: WidgetStateProperty.resolveWith<Color>((states) {
+      if (states.contains(WidgetState.pressed)) {
+        return const Color.fromARGB(255, 172, 186, 173); // Color when the button is clicked
+      }
+      return Colors.blue; // Default color
+    }),
+    padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
+      const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+    ),
+    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+    ),
+  ),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     final user = await _authService.signIn(
@@ -79,29 +110,36 @@ class _LoginscreenState extends State<Loginscreen> {
                       Navigator.pushReplacementNamed(context, '/home');
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Login Failed')),
+                        
+                        SnackBar(
+                          backgroundColor: Colors.blue,
+                          padding: EdgeInsets.all(16.0),
+                          margin: EdgeInsets.fromLTRB(20, 0, 20, 50),
+                          behavior: SnackBarBehavior.floating,
+                          content: Text('Please check your Emial and password')),
                       );
                     }
                   }
                 },
-                child: Text('Login'),
+                child: Text('Login',style: TextStyle(color: Colors.white),),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return PasswordReset();
-                  }));
-                },
-                child: Text('Forgot Password?'),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) {
-                    return Signupscreen();
-                  }));
-                },
-                child: Text("Sign up"),
+             
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Don't have an account?"),
+                  SizedBox( width: 3,),
+                  
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) {
+                        return Signupscreen();
+                      }));
+                    },
+                    child: Text("Sign up"),
+                  ),
+                ],
               ),
             ],
           ),
